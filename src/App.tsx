@@ -4,22 +4,39 @@ import './App.css'
 function App() {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState("Select Status");
+  const [role, setRole] = useState("");
+  const [company, setComp] = useState("");
+  const [platform, setPlat] = useState("");
+
+ 
 
   const handleDropDown = () => {
     setOpen(!open);
   };
 
-  function handleStatus(value) {
+  function handleStatus(value : string) {
     setStatus(value);
   };
 
   function handleSubmit(){
     alert("Submited! Awesome!");
   };
+
+  function handleRoleData(e : React.ChangeEvent<HTMLInputElement>){
+    setRole(e.target.value);
+  };
+
+  function handleCompData(e : React.ChangeEvent<HTMLInputElement>){
+    setComp(e.target.value);
+  };
+
+  function handlePlatData(e : React.ChangeEvent<HTMLInputElement>){
+    setPlat(e.target.value);
+  };
  
 
   //Goals
-  //Forms? Saving Values, and adding CSS
+  //Forms? Saving to a DB, and adding CSS, and Routing, Input Validation (no empty fields, etc)
 
   return (
     <>
@@ -33,9 +50,9 @@ function App() {
 
       <section id = "center">
           <div>
-             <input placeholder="Type Role Here"></input>
-             <input placeholder="Type Company Here"></input>
-             <input placeholder='Platform Used'></input>
+             <input type="text" placeholder="Type Role Here" value={role} onChange={handleRoleData}></input>
+             <input type="text" placeholder="Type Company Here" value={company} onChange={handleCompData}></input>
+             <input type={"text"} placeholder='Platform Used' value={platform} onChange={handlePlatData}></input>
              <div className ="dropdown">
                 <button onClick={handleDropDown}>{status}</button>
                 {open ? (
